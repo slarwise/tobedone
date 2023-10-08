@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: items
+spec:
+  selector:
+    matchLabels:
+      app: items
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: items
+    spec:
+      containers:
+        - name: items
+          image: "items"
+          ports:
+            - name: http
+              containerPort: 80
+          imagePullPolicy: Never
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: items
+spec:
+  selector:
+    app: items
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: http
