@@ -47,3 +47,16 @@ A TODO app with a twist!
 - OpenAPI for the microservices
 - Database schema
 - Local development instructions
+
+## Local development
+
+### Items
+
+`cargo run` to run the app. Build the image and start a container by doing:
+
+```sh
+docker build -t items ./items
+docker run --rm items
+```
+
+View the openapi docs with `make docs`.

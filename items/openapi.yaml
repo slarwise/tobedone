@@ -1,0 +1,20 @@
+openapi: 3.0.0
+info:
+  title: Todo items
+  version: 1.0.0
+paths:
+  # Whole board operations
+  /items:
+    get:
+      summary: Get all todo items
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  description: A todo item
+                  example: "Watch TV"
