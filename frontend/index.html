@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>To Be Done</title>
+</head>
+
+<body>
+  <h1>To Be Done</h1>
+  <div id="toBeDoneList"></div>
+  <script>
+    let fetch_result = fetch("http://localhost:3000/items")
+      .then((result) => result.json())
+      .then((data) => {
+        let list = document.getElementById("toBeDoneList");
+        data.forEach((item) => {
+          list.innerHTML += `
+            <div class="task">
+              <span id="taskname">
+                ${item}
+              </span>
+              <button class="delete">It is Done</button>
+            </div>
+          `;
+          var tasks = document.querySelectorAll(".delete");
+          for (let t of tasks) {
+            t.onclick = function () {
+              this.parentNode.remove();
+              // TODO: Remove the item from the server as well
+            }
+          }
+        })
+      })
+  </script>
+</body>
+
+</html>

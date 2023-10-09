@@ -1,4 +1,4 @@
-use axum::{routing::get, Json, Router};
+use axum::{http::header, http::HeaderMap, response::IntoResponse, routing::get, Json, Router};
 
 #[tokio::main]
 async fn main() {
@@ -11,7 +11,7 @@ async fn main() {
         .unwrap();
 }
 
-async fn get_items() -> Json<Vec<String>> {
+async fn get_items() -> impl IntoResponse {
     let words: Vec<String> = vec![
         String::from("Read book"),
         String::from("Scroll instagram"),
@@ -21,5 +21,7 @@ async fn get_items() -> Json<Vec<String>> {
         String::from("1; DROP TABLE users"),
         String::from("Watch a movie"),
     ];
-    Json(words)
+    let mut header_map = HeaderMap::new();
+    header_map.insert(header::ACCESS_CONTROL_ALLOW_ORIGIN, "*".parse().unwrap());
+    (header_map, Json(words))
 }

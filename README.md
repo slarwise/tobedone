@@ -60,3 +60,7 @@ docker run --rm items
 ```
 
 View the openapi docs with `make docs`.
+
+### Frontend
+
+`npx live-server ./frontend` to view the frontend.
