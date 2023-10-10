@@ -1,0 +1,36 @@
+body {
+  background-color: #f5a9b8;
+}
+
+h1 {
+  font-style: italic;
+  color: black;
+}
+
+.delete {
+  color: #f5a9b8;
+  background-color: black;
+  text-transform: uppercase;
+}
+
+.task {
+  color: black;
+  background-color: #5bcefa;
+  font-weight: 1000;
+  font-style: oblique;
+}
+
+input {
+  background-color: #5bcefa;
+  color: black;
+}
+
+label {
+  color: white;
+  font-style: italic;
+}
+
+hr {
+  height: 3px;
+  background-color: cyan;
+}

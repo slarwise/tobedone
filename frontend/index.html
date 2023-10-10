@@ -3,34 +3,48 @@
 
 <head>
   <title>To Be Done</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
   <h1>To Be Done</h1>
+  <label for="username">You are:</label>
+  <input type="text" id="username" />
+  <hr>
   <div id="toBeDoneList"></div>
   <script>
-    let fetch_result = fetch("http://localhost:3000/items")
-      .then((result) => result.json())
-      .then((data) => {
-        let list = document.getElementById("toBeDoneList");
-        data.forEach((item) => {
-          list.innerHTML += `
-            <div class="task">
-              <span id="taskname">
-                ${item}
-              </span>
+    const updateList = function () {
+      let username = document.getElementById("username").value;
+      let fetch_result = fetch(`http://localhost:3000/items/${username}`)
+        .then((result) => result.json())
+        .then((data) => {
+          let list = document.getElementById("toBeDoneList");
+          list.innerHTML = "";
+          data.forEach((item) => {
+            list.innerHTML += `
+            <div class="task" id="1">
+              ${item} |||||||||||||||||||
               <button class="delete">It is Done</button>
             </div>
           `;
-          var tasks = document.querySelectorAll(".delete");
-          for (let t of tasks) {
-            t.onclick = function () {
-              this.parentNode.remove();
-              // TODO: Remove the item from the server as well
+            var tasks = document.querySelectorAll(".delete");
+            for (let task of tasks) {
+              task.onclick = function () {
+                console.log(this.parentNode.id);
+                this.parentNode.remove();
+                // TODO: Remove the item from the server and call updateList
+              }
             }
-          }
+          })
         })
-      })
+    };
+    let input = document.getElementById("username");
+    input.addEventListener("keypress", function (event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        updateList();
+      }
+    })
   </script>
 </body>
 
