@@ -50,6 +50,9 @@ A TODO app with a twist!
 
 ## Local development
 
+For local development, you can use Tilt. Run `tilt up` and follow the
+instructions.
+
 ### Items
 
 `cargo run` to run the app. Build the image and start a container by doing:
