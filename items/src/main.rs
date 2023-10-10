@@ -2,6 +2,7 @@ use axum::{
     extract::Path, http::header, http::HeaderMap, response::IntoResponse, routing::get, Json,
     Router,
 };
+use serde::Serialize;
 
 #[tokio::main]
 async fn main() {
@@ -14,7 +15,7 @@ async fn main() {
         .unwrap();
 }
 
-#[derive(serialize)]
+#[derive(Serialize)]
 struct Item {
     value: String,
     id: u32,
